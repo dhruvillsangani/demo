@@ -1,0 +1,69 @@
+<div class="container" class="border border-dark">
+    <div class="overlay">
+    
+        <form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
+    
+            <div class="con">
+    
+                <br>
+                <div class="field-set">
+    
+                    <label for="title">Title</label>
+                    <input type="text" name="title" ngModel required title #title="ngModel">
+                    <br>
+                    <br>
+                    <div>
+                        <label for="description">Description</label>
+                        <ckeditor ngModel
+                        [editor]="Editor"
+                        id="description"
+                        name="description"
+                        #desciption="ngModel"
+                         >
+                        </ckeditor>
+                        <!-- <textarea name="description" id="description" rows="2" cols="20" ngModel required description
+                            #description="ngModel"></textarea> -->
+                    </div>
+    
+                    <div>
+    
+                        <label for="image">Image URL</label>
+                        <input type="text" name="imageurl" ngModel required imageurl #imageurl="ngModel">
+    
+                    </div>
+                    <div class="col-mg-5">
+                        <img [src] = "imageurl.value" style="max-width: 500px; max-height: 500px;">
+                    </div>
+                    <br>
+                    <div class="col-xs-12 col-12 col-md-4 ">
+                        <label for="languages">Languages:</label>
+                        <ng-multiselect-dropdown class="select" [placeholder]="'Select'"
+                            [settings]="languageSettings" [data]="languageList" ngModel name="languages">
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <br><br>
+                    <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+                        <input
+                          class="form-control"
+                          placeholder="Datepicker"
+                          bsDatepicker
+                          ngModel name="date"
+                          #date 
+                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-red' }">
+                    </div>
+                   <br>
+                    <div>
+                        <label for="author">Author</label>
+                        <input type="text" name="author" ngModel="{{loginService.uname}}" readonly>
+                    </div>
+                    <br><br>
+                   
+    
+                    <button class="log-in" type="submit" [disabled]="!postBlog.valid"> Publish</button>
+                </div>
+            </div>
+            
+
+        </form>
+    </div>
+    </div>
